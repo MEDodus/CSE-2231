@@ -1,0 +1,21 @@
+FindObstacle
+WHILE true DO
+  move
+END WHILE
+IF next-is-enemy THEN
+  turnleft
+END IF
+IF next-is-wall THEN 
+  move
+  turnright
+  turnright
+  CheckAhead
+ELSE
+  IF next-is-enemy THEN
+    infect
+    FindObstacle
+  ELSE
+    turnleft
+    FindObstacle
+  END IF
+END IF

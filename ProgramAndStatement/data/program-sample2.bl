@@ -1,0 +1,41 @@
+PROGRAM GodBug IS
+
+  INSTRUCTION FindObstacle IS
+    WHILE next-is-empty DO
+      move
+    END WHILE
+  END FindObstacle
+    
+  INSTRUCTION CheckAhead IS
+    WHILE true DO
+      IF next-is-enemy THEN
+        infect
+      ELSE
+        skip
+      END IF
+    END WHILE
+  END CheckAhead
+    
+  INSTRUCTION FindWall IS
+    FindObstacle
+    IF next-is-wall THEN 
+      move
+      turnright
+      turnright
+      CheckAhead
+    ELSE
+      IF next-is-enemy THEN
+        infect
+        FindObstacle
+      ELSE
+        turnleft
+        FindObstacle
+      END IF
+    END IF
+  END FindWall
+
+BEGIN
+  WHILE true DO
+    FindWall
+  END WHILE
+END GodBug
